@@ -31,6 +31,7 @@ userSchema.pre('save',async function(){
 
     } catch (error) {
         console.log(error)
+        
     }
 })
 const UserModel = db.model('users', userSchema);
