@@ -7,4 +7,5 @@ const db = mongoose.createConnection(url).on('open', ()=> {
   console.log("Server error");
 });
 
+
 module.exports = db;

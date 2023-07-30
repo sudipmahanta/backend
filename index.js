@@ -2,7 +2,7 @@ const app = require('./app');
 const db = require('./config/db')
 const UserModel = require('./models/user.model')
 
-const port = 3007;
+const port = process.env.PORT || 3007;
 
 app.get('/', (req, res)=>{
     res.send("http//:bohiba.com");
