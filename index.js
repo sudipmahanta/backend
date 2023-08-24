@@ -1,8 +1,7 @@
-const app = require('./app');
-const db = require('./config/db')
-const UserModel = require('./models/user.model')
+require('dotenv').config();
 
-const port = process.env.PORT || 3007;
+const app = require('./app');
+const port = process.env.PORT || 8000;
 
 app.get('/', (req, res)=>{
     res.send("http//:bohiba.com");
