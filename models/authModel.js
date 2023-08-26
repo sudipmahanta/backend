@@ -30,57 +30,66 @@ const userSchema = new Schema({
   documentDetails: {
     aadhaarNumber: {
       type: String,
-      length: 19,
-      unique: true,
+      require: false,
+      maxlength: 19,
     },
     panNumber: {
       type: String,
-      length: 10,
-      unique: true,
+      require: false,
+      maxlength: 10,
     },
   },
-  
   addressDetails : {
     addressProof: {
       type: String,
+      require: false,
     },
     houseNumber: {
       type: String,
+      require: false,
     },
     locality: {
       type: String,
+      require: false,
     },
     streetAddress: {
       type: String,
+      require: false,
     },
     village: {
       type: String,
+      require: false,
     },
     pinCode: {
       type: String,
-      length: 6,
+      maxlength: 6,
+      require: false,
     },
     district: {
       type: String,
+      require: false,
     },
     state: {
       type: String,
+      require: false,
     },
     country: {
       type: String,
+      require: false,
     },
   },
-  
   bankDetails: [{
     bankName: {
       type: String,
+      require: false,
     },
     accountNumber: {
       type: String,
+      require: false,
     },
     ifsc: {
       type: String,
-      length: 11
+      maxlength: 11,
     }
   }],
 
@@ -98,16 +107,14 @@ userSchema.pre('save',async function() {
         user.password = hashPwd;
 
     } catch (error) {
-        console.log(error)
-        
+        console.log(error)   
     }
 });
 
 userSchema.methods.comparePassword = async function(userPassword) {
   try {
     const isMatch = await bcrypt.compare(userPassword, this.password);
-    console.log(`User Password: ${userPassword}`);
-    return isMatch; 
+    return isMatch;
   } catch (error) {
     console.log(`Error while Comparing Password ${error}`);
   }

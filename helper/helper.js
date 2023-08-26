@@ -9,9 +9,22 @@ function generateUniqueID() {
     
     return uniqueID;
   }
-  
+  function generateVehicleUUID() {
+    const characters = 'abcdefghijklmnoparztuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-';
+    let vehicleUUID = '';
+    
+    for (let i = 0; i < 16; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      vehicleUUID += characters.charAt(randomIndex);
+    }
+    
+    return vehicleUUID;
+  }
+
   const generatedUserID = generateUniqueID();
+  const genVehicleUUID = generateVehicleUUID();
 
   module.exports = {
-    generatedUserID
+    generatedUserID,
+    genVehicleUUID, 
   }

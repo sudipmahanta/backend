@@ -4,14 +4,17 @@ const jwt = require('jsonwebtoken');
 
 class SignUpService {
     static async registerUser(userID, email, mobileNumber, password) {
-        try {
-            const userID =  GenerateUniqueID.generatedUserID.toString();
-            const registerUser = new UserSignUpModel({userID, email, mobileNumber, password});
+        
+        const uuid =  GenerateUniqueID.generatedUserID.toString();
+            const registerUser = new UserSignUpModel({userID: uuid, email, mobileNumber, password});
             return await registerUser.save();
+
+        /*try {
+            
 
         } catch (error) {
             console.log(`User registration while saving\nError: ${error}`);
-        }
+        }*/
     }
 
     static async signIn(userID) {
@@ -27,7 +30,5 @@ class SignUpService {
     }
 
 };
-
-
 
 module.exports = SignUpService;
