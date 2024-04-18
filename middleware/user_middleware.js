@@ -19,6 +19,7 @@ class UserMiddleware {
       return next();
     }]
 }
+
     // Check if any [email] is associated with existing user.
     static async emailExist({ email }){
         return await UserModel.findOne({ email });
