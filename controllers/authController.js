@@ -1,5 +1,5 @@
 const AuthMiddleWare = require('../middleware/authMiddleware');
-const UserSignUpModel = require('../models/authModel');
+const UserSignUpModel = require('../models/user_models/user_model');
 require('dotenv').config();
 
 async function signUp(req, res, next) {

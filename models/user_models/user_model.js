@@ -1,33 +1,39 @@
 const mongoose = require('mongoose');
-const db = require('../config/db')
+const db = require('../../config/db')
 const bcrypt = require('bcrypt');
 
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  userID:{
-    type: String,
-    required: true, 
-    unique: true,
+  personDetails: {
+    user_id:{
+      type: String,
+      required: true, 
+      unique: true,
+    },
+    email: {
+      type: String,
+      lowercase: true,
+      required: true, 
+      unique: true,
+    },
+    user_name: {
+      type: String,
+    },
+    mobile_number: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    dob: {
+      type: Date
+    },
+    password: {
+      type: String,
+      required: true,
+    },
   },
-  email: {
-    type: String,
-    lowercase: true,
-    required: true, 
-    unique: true,
-  },
-  userName: {
-    type: String,
-  },
-  mobileNumber: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  dob: {
-    type: Date
-  },
-  documentDetails: {
+  document: {
     aadhaarNumber: {
       type: String,
       require: false,
@@ -39,7 +45,7 @@ const userSchema = new Schema({
       maxlength: 10,
     },
   },
-  addressDetails : {
+  address : {
     addressProof: {
       type: String,
       require: false,
@@ -78,7 +84,7 @@ const userSchema = new Schema({
       require: false,
     },
   },
-  bankDetails: [{
+  bank: [{
     bankName: {
       type: String,
       require: false,
@@ -92,11 +98,16 @@ const userSchema = new Schema({
       maxlength: 11,
     }
   }],
-
-  password: {
+  other:{
+    createdBy: {
+      type: String,
+      require: true,
+    },
+   createAt: {
     type: String,
     required: true,
-  },
+   }
+  }
 });
 
 userSchema.pre('save',async function() {
