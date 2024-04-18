@@ -1,16 +1,17 @@
-const express = require('express');
-const body_parser = require('body-parser');
-const UserRoute = require('./routes/authRoute');
-const LoadRoute = require('./routes/loadRoute');
-// const UserDashRouter = require('./routes/userDashRoute');
-const VehcileDashRouter = require('./routes/vehicleDashRoute');
+const express  = require("express");
+const UserRouter = require("./routes/user_router");
+const session = require("express-session");
+const bodyParser = require("body-parser");
 
 const app = express();
+app.use(session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: false}
+}));
 
-app.use(body_parser.json());
-app.use('/', UserRoute);
-app.use('/', LoadRoute);
-// app.use('/', UserDashRouter);
-app.use('/', VehcileDashRouter);
+app.use(bodyParser.json());
+app.use('/', UserRouter);
 
 module.exports = app;

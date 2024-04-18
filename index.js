@@ -1,11 +1,15 @@
 require('dotenv').config();
+const express = require("express");
+const app = require("./app");
 
-const app = require('./app');
 const port = process.env.PORT || 8000;
 
-app.get('/', (req, res)=>{
+app.use(express.json())
+
+app.get('/', (res, req)=>{
     res.send("http//:bohiba.com");
-})
+});
+
 
 app.listen(port, ()=> {
     console.log(`Server working ${port}`);
